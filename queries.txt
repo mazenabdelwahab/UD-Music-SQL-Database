@@ -1,0 +1,48 @@
+What is the most cites invoices?
+
+SELECT Customer.City , sum(invoice.total) AS  Total_of_invoices
+FROM Invoice
+JOIN Customer
+ON Invoice.CustomerId = Customer.CustomerId
+GROUP BY Customer.City
+ORDER BY Total_of_invoices DESC
+LIMIT 5;
+
+What the track had best revenue?
+
+SELECT  Album.Title AS Album_name  ,count(Track.TrackId) AS Total_tracks
+FROM Track
+JOIN Album
+ON Track.AlbumId = Album.AlbumId
+WHERE Composer IS NOT NULL
+GROUP BY Album.Title
+ORDER BY Total_tracks DESC
+LIMIT 5 ;
+
+The number of tracks accourding to albums
+
+SELECT  Track.Name AS Track_name ,  sum(Invoice.Total) AS Total_invoices
+FROM Track
+ Join InvoiceLine
+ON InvoiceLine.TrackId = Track.TrackId
+ Join Invoice
+ON Invoice.InvoiceId=InvoiceLine.InvoiceId
+GROUP BY Track.TrackId
+ORDER by Total_invoices DESC
+LIMIT 5 ;
+
+The Top Mediatype format used in tracks
+
+SELECT MediaType.Name, count(track.mediatypeId) AS Total_type
+FROM Track
+JOIN MediaType
+ON MediaType.MediaTypeId = track.MediaTypeId
+GROUP BY MediaType.Name
+ORDER BY Total_type DESC
+
+
+
+
+
+
+
